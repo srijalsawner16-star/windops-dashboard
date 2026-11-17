@@ -1,8 +1,8 @@
 
 import "./App.css";
+import TurbineList from "./components/dashboard/TurbineList";
 import AppHeader from "./components/layouts/AppHeader";
 import AppSidebar from "./components/layouts/AppSidebar";
-import TurbineCard from "./components/layouts/TurbineCard";
 
 function App() {
   const turbines = [
@@ -21,9 +21,7 @@ function App() {
           <h2>Welcome to WindOps</h2>
           <p>Wind Turbine Operations Dashboard</p>
           <div>
-      {turbines.map((item) => {
-        return <TurbineCard key={item.id} name={item.name} location={item.location} power={item.power} status={item.status}  />
-      })}
+          <TurbineList turbines={turbines} />
     </div>
         </section>
 
