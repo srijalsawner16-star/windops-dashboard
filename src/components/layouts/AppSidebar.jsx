@@ -1,41 +1,22 @@
 import {
-    Bell,
-    ChartNoAxesCombined,
-    LayoutDashboard,
-    Settings,
-    Wind,
-    Wrench
+  Bell,
+  ChartNoAxesCombined,
+  LayoutDashboard,
+  Settings,
+  Wind,
+  Wrench
 } from "lucide-react";
-
+import { NavLink } from "react-router-dom";
 import '../../styles/_sidebar.scss';
 
 
 const navigationItems = [
-    {
-        label: 'Dashboard',
-        icon: LayoutDashboard
-    },
-    {
-        label: 'Turbines',
-        icon: Wind
-    },
-    {
-        label: 'Alerts',
-        icon: Bell
-    },
-    {
-        label: 'Maintenance',
-        icon: Wrench
-    },
-    {
-        label: 'Reports',
-        icon: ChartNoAxesCombined
-    },
-    {
-        label: 'Settings',
-        icon: Settings
-    },
-
+  { label: "Dashboard", path: "/", icon: LayoutDashboard },
+  { label: "Turbines", path: "/turbines", icon: Wind },
+  { label: "Alerts", path: "/alerts", icon: Bell },
+  { label: "Maintenance", path: "/maintenance", icon: Wrench },
+  { label: "Reports", path: "/reports", icon: ChartNoAxesCombined },
+  { label: "Settings", path: "/settings", icon: Settings },
 ];
 
 
@@ -48,21 +29,24 @@ export default function AppSidebar() {
   <nav className="sidebar__nav">
     <ul>
       {navigationItems.map((item) => {
-        const Icon = item.icon;
-        const isActive = item.label === "Dashboard";
+  const Icon = item.icon;
 
-        return (
-          <li
-            key={item.label}
-            className={`sidebar__item ${
-              isActive ? "sidebar__item--active" : ""
-            }`}
-          >
-            <Icon size={20} />
-            <span>{item.label}</span>
-          </li>
-        );
-      })}
+  return (
+    <li key={item.label}>
+      <NavLink
+        to={item.path}
+        className={({ isActive }) =>
+          `sidebar__item ${
+            isActive ? "sidebar__item--active" : ""
+          }`
+        }
+      >
+        <Icon size={20} />
+        <span>{item.label}</span>
+      </NavLink>
+    </li>
+  );
+})}
     </ul>
   </nav>
 </aside>
