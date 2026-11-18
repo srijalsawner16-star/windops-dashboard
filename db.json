@@ -2,7 +2,7 @@
   "turbines": [
     {
       "id": "1",
-      "name": "WT-001",
+      "name": "WT-0011",
       "location": "Mumbai",
       "power": "2.5 MW",
       "status": "Operational"
