@@ -15,6 +15,11 @@ function App() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
+
+  const updateTurbine = (updateTurbine)=>{
+    setTurbines((prev)=>prev.map((turbine)=>turbine.id === updateTurbine.id ? updateTurbine : turbine))
+  }
+
   useEffect(()=>{
     async function fetchTurbines() {
       setLoading(true);
@@ -60,7 +65,7 @@ function App() {
             <Route path="*" element={<NotFound/>} />
             <Route
   path="/turbines/:id"
-  element={<TurbineDetails turbines={turbines} />}
+  element={<TurbineDetails turbines={turbines} onUpdateTurbine={updateTurbine} />}
 />
         </Routes>
 
