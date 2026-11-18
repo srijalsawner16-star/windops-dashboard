@@ -1,12 +1,14 @@
 
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import MetricCard from "./components/dashboard/MetricCard";
-import TurbineList from "./components/dashboard/TurbineList";
 import AppHeader from "./components/layouts/AppHeader";
 import AppSidebar from "./components/layouts/AppSidebar";
+import Dashboard from "./pages/Dashboard";
+import NotFound from "./pages/NotFound";
+import Turbines from "./pages/Turbines";
 import './styles/_metric-card.scss';
-
+import TurbineDetails from "./pages/TurbineDetails";
 function App() {
 
   const [turbines, setTurbines] = useState([]);
@@ -45,31 +47,23 @@ function App() {
 }
 
 
-  const totalTurbines = turbines.length;
-  const operationalCount = turbines.filter((turbine)=>turbine.status === 'Operational').length
-  const offlineCount = turbines.filter((turbine)=>turbine.status === 'Offline').length;
-  const maintenanceCount = turbines.filter((turbine)=>turbine.status === 'Maintenance').length
   return (
     <div className="app-layout">
       <AppSidebar />
 
       <main className="app-layout__main">
         <AppHeader />
-        <div className="metric-grid">
-        <MetricCard title="Total Turbines" value={totalTurbines}></MetricCard>
-        <MetricCard title="Operational Turbines" value={operationalCount}></MetricCard>
-        <MetricCard title="Offline Turbines" value={offlineCount}></MetricCard>
 
-        <MetricCard title="Maintenance Turbines" value={maintenanceCount} />
-        </div>
+        <Routes>
+          <Route path="/" element={ <Dashboard turbines={turbines} />} />
+             <Route path="/turbines" element={ <Turbines turbines={turbines} />} />
+            <Route path="*" element={<NotFound/>} />
+            <Route
+  path="/turbines/:id"
+  element={<TurbineDetails turbines={turbines} />}
+/>
+        </Routes>
 
-        <section className="app-layout__content">
-          <h2>Welcome to WindOps</h2>
-          <p>Wind Turbine Operations Dashboard</p>
-          <div>
-          <TurbineList turbines={turbines} />
-    </div>
-        </section>
 
       </main>
 

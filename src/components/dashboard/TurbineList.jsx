@@ -29,6 +29,7 @@ export default function TurbineList({ turbines }) {
             location={turbine.location}
             power={turbine.power}
             status={turbine.status}
+            id={turbine.id}
           />
         );
       })}

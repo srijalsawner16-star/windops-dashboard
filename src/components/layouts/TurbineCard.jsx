@@ -1,8 +1,10 @@
 import '../../styles/_turbinecard.scss'
-export default function TurbineCard({name, location, power, status}) {
+import {Link} from 'react-router-dom'
+export default function TurbineCard({name, location, power, status, id}) {
     return (
 
-        <div >
+      <Link to={`/turbines/${id}`}>
+          <div >
         <h2>{name}</h2>
         <p>{location}</p>
         <p>{power}</p>
@@ -16,6 +18,7 @@ export default function TurbineCard({name, location, power, status}) {
   }`}
 >{status}</p>
         </div>
+      </Link>
 
 
     )
