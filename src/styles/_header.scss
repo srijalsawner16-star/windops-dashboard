@@ -67,3 +67,33 @@
     font-weight: 600;
   }
 }
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .app-header__title {
+    h2 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 11px;
+    }
+  }
+
+  .app-header__actions {
+    gap: 10px;
+  }
+
+  .app-header__profile {
+    gap: 6px;
+  }
+
+  .app-header__avatar {
+    width: 32px;
+    height: 32px;
+  }
+}

@@ -1,6 +1,8 @@
 import MetricCard from "../components/dashboard/MetricCard";
 
 import TurbineList from "../components/dashboard/TurbineList";
+import TurbineOutputChart from "../components/dashboard/TurbineOutputChart";
+import TurbineStatusChart from "../components/dashboard/TurbineStatusChart";
 export default function Dashboard({turbines}) {
 
 
@@ -24,6 +26,8 @@ export default function Dashboard({turbines}) {
           <p>Wind Turbine Operations Dashboard</p>
           <div>
           <TurbineList turbines={turbines} />
+          <TurbineStatusChart turbines={turbines} />
+          <TurbineOutputChart turbines={turbines} />
     </div>
         </section>
 

@@ -26,3 +26,18 @@ body {
 .app-layout__content {
   padding: 28px;
 }
+
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .app-layout__content {
+    padding: 16px;
+  }
+}

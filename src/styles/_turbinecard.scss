@@ -26,3 +26,26 @@ a{
   text-decoration: none;
   color: inherit;
 }
+
+@media (max-width: 768px) {
+  .turbine-list {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .turbine-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .turbine-form {
+    padding: 16px;
+  }
+
+  .turbine-form input,
+  .turbine-form select,
+  .turbine-form button {
+    width: 100%;
+  }
+}
