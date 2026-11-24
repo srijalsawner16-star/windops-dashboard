@@ -6,9 +6,9 @@ import AppHeader from "./components/layouts/AppHeader";
 import AppSidebar from "./components/layouts/AppSidebar";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import TurbineDetails from "./pages/TurbineDetails";
 import Turbines from "./pages/Turbines";
 import './styles/_metric-card.scss';
-import TurbineDetails from "./pages/TurbineDetails";
 function App() {
 
   const [turbines, setTurbines] = useState([]);
@@ -18,6 +18,10 @@ function App() {
 
   const updateTurbine = (updateTurbine)=>{
     setTurbines((prev)=>prev.map((turbine)=>turbine.id === updateTurbine.id ? updateTurbine : turbine))
+  }
+
+  const deleteTurbine = (e) => {
+    setTurbines((previousTurbines)=>previousTurbines.filter((item) => item.id !== e))
   }
 
   useEffect(()=>{
@@ -51,6 +55,31 @@ function App() {
   return <p>Error: {error}</p>;
 }
 
+const addTurbine = async (newTurbine) => {
+  const response = await fetch("http://localhost:3000/turbines", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newTurbine)
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add turbine");
+  }
+
+  const result = await response.json();
+
+  setTurbines((previousTurbines) => [
+    ...previousTurbines,
+    result
+  ]);
+
+  return result;
+};
+
+
+
 
   return (
     <div className="app-layout">
@@ -61,11 +90,11 @@ function App() {
 
         <Routes>
           <Route path="/" element={ <Dashboard turbines={turbines} />} />
-             <Route path="/turbines" element={ <Turbines turbines={turbines} />} />
+             <Route path="/turbines" element={ <Turbines turbines={turbines} onAddTurbine={addTurbine} />} />
             <Route path="*" element={<NotFound/>} />
             <Route
   path="/turbines/:id"
-  element={<TurbineDetails turbines={turbines} onUpdateTurbine={updateTurbine} />}
+  element={<TurbineDetails turbines={turbines} onUpdateTurbine={updateTurbine} onDeleteTurbine={deleteTurbine} />}
 />
         </Routes>
 

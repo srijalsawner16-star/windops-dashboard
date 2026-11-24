@@ -1,25 +1,25 @@
 {
   "turbines": [
     {
-      "id": "1",
-      "name": "WT-0011",
-      "location": "Mumbai",
-      "power": "2.5 MW",
-      "status": "Operational"
-    },
-    {
-      "id": "2",
-      "name": "WT-002",
-      "location": "Pune",
-      "power": "3.0 MW",
-      "status": "Maintenance"
-    },
-    {
       "id": "3",
       "name": "WT-003",
       "location": "Nashik",
       "power": "2.0 MW",
       "status": "Offline"
+    },
+    {
+      "name": "WT-0016",
+      "location": "Pune",
+      "power": "3",
+      "status": "Operational",
+      "id": "30YUxPX"
+    },
+    {
+      "name": "WT-0031",
+      "location": "Indore",
+      "power": "4",
+      "status": "Operational",
+      "id": "CQyOHup"
     }
   ]
 }

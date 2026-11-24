@@ -5,15 +5,32 @@ import TurbineCard from "../layouts/TurbineCard";
 export default function TurbineList({ turbines }) {
 
   const [filter, setFilter] = useState('All')
+  const [searchTerm, setSearchTerm] = useState('');
   const filteredTurbines =
-  filter === "All"
-    ? turbines
-    : turbines.filter(
-        (turbine) => turbine.status === filter
-      );
+
+    turbines.filter((turbine)=>{
+      const matchesStatus = filter === 'All' || turbine.status === filter;
+
+      const matchesSearch =
+
+      turbine.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+      turbine.location.toLowerCase().includes(searchTerm.toLowerCase())
+
+      return matchesStatus && matchesSearch;
+    })
+
   return (
     <>
     <div>
+    <div className="search-contianer">
+      <input type="text"
+      placeholder="Search by turbine name or location.."
+      value={searchTerm}
+      onChange={(e)=>setSearchTerm(e.target.value)}
+
+
+      />
+    </div>
     <button onClick={()=>setFilter("Offline")}>Offline</button>
     <button onClick={()=>setFilter("All")}>All</button>
     <button onClick={()=>setFilter("Maintenance")}>Maintenance</button>
